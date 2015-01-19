@@ -1,7 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using AngularExamples;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(AngularExamples.Startup))]
+[assembly: OwinStartup(typeof (Startup))]
+
 namespace AngularExamples
 {
     public partial class Startup

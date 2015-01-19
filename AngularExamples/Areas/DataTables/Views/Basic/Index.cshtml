@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div data-ng-app="myApp">
+    <div ng-controller="bootstrapCtrl as Anh">
+        <table datatable="" dt-options="Anh.dtOptions" dt-column-defs="Anh.dtColumnDefs" class="table table-striped table-bordered table-hover" id="test">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Foo</td>
+                <td>Bar</td>
+            </tr>
+            <tr>
+                <td>123</td>
+                <td>Someone</td>
+                <td>Youknow</td>
+            </tr>
+            <tr>
+                <td>987</td>
+                <td>Iamout</td>
+                <td>Ofinspiration</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        angular.module("myApp", ["datatables"])
+            .controller("bootstrapCtrl", function(DTOptionsBuilder, DTColumnDefBuilder) {
+                var vm = this;
+                vm.dtOptions = DTOptionsBuilder.newOptions()
+                    .withPaginationType("full_numbers")
+                    //.withDisplayLength(2)
+                    .withBootstrap();
+
+                vm.dtColumnDefs = [
+                    DTColumnDefBuilder.newColumnDef(0),
+                    DTColumnDefBuilder.newColumnDef(1),
+                    DTColumnDefBuilder.newColumnDef(2).notSortable()
+                ];
+            });
+    </script>
+}

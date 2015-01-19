@@ -2,23 +2,20 @@
 
 namespace AngularExamples.Areas.Basic
 {
-    public class BasicAreaRegistration : AreaRegistration 
+    public class BasicAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
-            {
-                return "Basic";
-            }
+            get { return "Basic"; }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Basic_default",
                 "Basic/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new {action = "Index", id = UrlParameter.Optional}
+                );
         }
     }
 }
