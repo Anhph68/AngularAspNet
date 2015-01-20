@@ -71,7 +71,7 @@ app.controller("AppsCtrl", function (DTOptionsBuilder, DTColumnBuilder) {
             type: 'POST'
         })
         // or here
-        .withDataProp('aaData')
+        .withDataProp('data')
         .withOption('serverSide', true)
         .withPaginationType('full_numbers')
         .withBootstrap();

@@ -2,15 +2,10 @@
 
 namespace AngularExamples.Areas.Basic.Controllers
 {
-    public class HomeController : Controller
+    public class SinglePageController : Controller
     {
         // GET: Basic/Home
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult FormValidation()
         {
             return View();
         }
