@@ -59,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -177,6 +179,25 @@
     <Compile Include="Areas\Basic\Controllers\RouterAppController.cs" />
     <Compile Include="Areas\DataTables\Controllers\BasicController.cs" />
     <Compile Include="Areas\DataTables\DataTablesAreaRegistration.cs" />
+    <Compile Include="Areas\DataTables\Models\jQueryDataTableParamModel.cs" />
+    <Compile Include="Areas\DataTables\Models\tblApp.cs">
+      <DependentUpon>TDKTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\DataTables\Models\TDKTModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TDKTModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\DataTables\Models\TDKTModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TDKTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\DataTables\Models\TDKTModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TDKTModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,6 +218,7 @@
     <Content Include="Scripts\angular-datatables\angular-datatables.min.js" />
     <Content Include="Scripts\angular-datatables\jquery.dataTables.js" />
     <Content Include="Scripts\angular-datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\apps\datatables\datatable.js" />
     <Content Include="Scripts\apps\multisteps\multistep.js" />
     <Content Include="Scripts\apps\routerApp.js" />
     <Content Include="Scripts\apps\SinglePage.js" />
@@ -281,6 +303,27 @@
     <Content Include="Areas\DataTables\Views\_ViewStart.cshtml" />
     <Content Include="Areas\DataTables\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\DataTables\Views\Basic\Index.cshtml" />
+    <Content Include="Scripts\apps\data.json" />
+    <Content Include="Areas\DataTables\Views\Basic\Basic.cshtml" />
+    <Content Include="Areas\DataTables\Views\Basic\LoadJson.cshtml" />
+    <EntityDeploy Include="Areas\DataTables\Models\TDKTModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TDKTModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\DataTables\Models\TDKTModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TDKTModel.edmx</DependentUpon>
+      <LastGenOutput>TDKTModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\DataTables\Models\TDKTModel.edmx.diagram">
+      <DependentUpon>TDKTModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\DataTables\Models\TDKTModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TDKTModel.edmx</DependentUpon>
+      <LastGenOutput>TDKTModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\DataTables\Views\Basic\AppList.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1085,11 +1128,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Basic\Models\" />
-    <Folder Include="Areas\DataTables\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
