@@ -9,7 +9,11 @@ namespace AngularExamples.Areas.DataTables.Controllers
 {
     public class BasicController : Controller
     {
-        // GET: DataTables/Basic
+        public ActionResult Single()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();

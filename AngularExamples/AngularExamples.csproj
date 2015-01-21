@@ -329,6 +329,7 @@
       <LastGenOutput>TDKTModel.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\DataTables\Views\Basic\AppList.cshtml" />
+    <Content Include="Areas\DataTables\Views\Basic\Single.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
