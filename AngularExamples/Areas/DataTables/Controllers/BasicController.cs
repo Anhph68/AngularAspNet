@@ -14,6 +14,11 @@ namespace AngularExamples.Areas.DataTables.Controllers
             return View();
         }
 
+        public ActionResult Modal()
+        {
+            return PartialView();
+        }
+
         public ActionResult Index()
         {
             return View();

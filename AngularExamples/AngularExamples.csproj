@@ -179,7 +179,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\AngularUI\AngularUIAreaRegistration.cs" />
+    <Compile Include="Areas\AngularUI\Controllers\ModalController.cs" />
     <Compile Include="Areas\Basic\BasicAreaRegistration.cs" />
+    <Compile Include="Areas\Basic\Controllers\FormValidationController.cs" />
     <Compile Include="Areas\Basic\Controllers\SinglePageController.cs" />
     <Compile Include="Areas\Basic\Controllers\MultiStepsController.cs" />
     <Compile Include="Areas\Basic\Controllers\RouterAppController.cs" />
@@ -224,6 +227,10 @@
     <Content Include="Scripts\angular-datatables\angular-datatables.min.js" />
     <Content Include="Scripts\angular-datatables\jquery.dataTables.js" />
     <Content Include="Scripts\angular-datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\apps\datatables\datatable.js" />
     <Content Include="Scripts\apps\multisteps\multistep.js" />
     <Content Include="Scripts\apps\routerApp.js" />
@@ -330,6 +337,13 @@
     </Content>
     <Content Include="Areas\DataTables\Views\Basic\AppList.cshtml" />
     <Content Include="Areas\DataTables\Views\Basic\Single.cshtml" />
+    <Content Include="Areas\AngularUI\Views\web.config" />
+    <Content Include="Areas\AngularUI\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\AngularUI\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\AngularUI\Views\Modal\Index.cshtml" />
+    <Content Include="Areas\AngularUI\Views\Modal\Modal.cshtml" />
+    <Content Include="Areas\DataTables\Views\Basic\Modal.cshtml" />
+    <Content Include="Areas\Basic\Views\FormValidation\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1137,6 +1151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AngularUI\Models\" />
     <Folder Include="Areas\Basic\Models\" />
   </ItemGroup>
   <ItemGroup>

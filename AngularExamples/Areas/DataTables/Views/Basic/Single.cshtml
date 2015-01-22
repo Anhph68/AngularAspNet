@@ -4,9 +4,8 @@
 
 <h2>Single</h2>
 <div ng-app="myApp">
-    <div ng-controller="AppsCtrl as showCase">
-        <p class="text-danger"><strong>{{ message }}</strong></p>
-        <br>
+    <div ng-controller="AppsCtrl as showCase" class="container-fluid">
+        <p class="text-danger"><strong>{{ showCase.message }}</strong></p>
         <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table table-hover table-bordered table-striped table-condensed"></table>
     </div>
 </div>
@@ -14,11 +13,8 @@
 {
     <script>
         var app = angular.module("myApp", ["datatables"]);
-        app.controller("AppsCtrl", function ($scope, DTOptionsBuilder, DTColumnBuilder) {
-            $scope.message = 'asdasdas';
-            $scope.edit = edit;
-            $scope.delete = deleteRow;
-
+        app.controller("AppsCtrl", function ($scope, $compile, DTOptionsBuilder, DTColumnBuilder) {
+            
             var vm = this;
             vm.dtOptions = DTOptionsBuilder
                 .newOptions()
@@ -31,29 +27,30 @@
                 // or here
                 .withDataProp('data')
                 .withOption('serverSide', true)
+                .withOption('createdRow', createdRow)
                 .withPaginationType('full_numbers')
                 .withBootstrap();
             vm.dtColumns = [
-                DTColumnBuilder.newColumn('col0').withTitle('Id').withClass('col-md-1'),
+                DTColumnBuilder.newColumn('col0').withTitle('Id').withClass('col-md-1 text-center'),
                 DTColumnBuilder.newColumn('col1').withTitle('Name of Application'),
                 DTColumnBuilder.newColumn('col2').withTitle('Url').withClass('col-md-2'),
-                DTColumnBuilder.newColumn(null).withClass('col-md-1').notSortable().renderWith(actionHtml)
+                DTColumnBuilder.newColumn(null).renderWith(actionHtml).withClass('col-md-1 text-center').notSortable()
             ];
+            $scope.message = '';
+            $scope.edit = edit;
+            $scope.delete = deleteRow;
+            function createdRow(row, data, dataIndex) {
+                // Recompiling so we can bind Angular directive to the DT
+                $compile(angular.element(row).contents())($scope);
+            }
             function edit(id) {
                 console.log(id);
-                $scope.message = 'You are trying to edit the row with ID: ' + id;
-                // Edit some data and call server to make changes...
-                // Then reload the data so that DT is refreshed
-                //$scope.dtOptions.reloadData();
+                vm.message = 'You are trying to edit the row with ID: ' + id;
             }
             function deleteRow(id) {
-                $scope.message = 'You are trying to remove the row with ID: ' + id;
-                // Delete some data and call server to make changes...
-                // Then reload the data so that DT is refreshed
-                //$scope.dtOptions.reloadData();
+                vm.message = 'You are trying to remove the row with ID: ' + id;
             }
             function actionHtml(data) {
-                console.log(data);
                 return '<button class="btn btn-sm btn-primary" ng-click="edit(' + data.col0 + ')"><i class="fa fa-edit"></i></button> <button class="btn btn-sm btn-danger" ng-click="delete(' + data.col0 + ')"><i class="fa fa-trash-o"></i></button>';
             }
         });
