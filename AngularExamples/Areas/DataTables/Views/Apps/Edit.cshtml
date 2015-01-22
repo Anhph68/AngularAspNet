@@ -1,0 +1,45 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Edit the app of {{tblApp.Id}}</h3>
+</div>
+
+<form name="frmApp" ng-submit="submitForm()" novalidate class="form-horizontal" role="form">
+    <div class="modal-body">
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : frmApp.Id.$invalid && !frmApp.Id.$pristine, 'has-success': frmApp.Id.$valid }">
+            <label class="control-label col-sm-4" for="Id">AppId</label>
+            <div class="col-md-8 has-feedback">
+                <input type="text" name="Id" class="form-control" ng-model="tblApp.Id" required autofocus placeholder="Enter AppId">
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="frmApp.Id.$valid"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="!frmApp.Id.$valid && frmApp.Id.$dirty"></span>
+                <p ng-show="frmApp.Id.$invalid && !frmApp.Id.$pristine" class="help-block">Không được để trống</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : frmApp.AppName.$invalid && !frmApp.AppName.$pristine, 'has-success': frmApp.AppName.$valid }">
+            <label class="control-label col-md-4" for="AppName">Name of Application</label>
+            <div class="col-md-8 has-feedback">
+                <input type="text" name="AppName" class="form-control" ng-model="tblApp.AppName" required placeholder="Enter Name of Application">
+                <span class=" glyphicon glyphicon-ok form-control-feedback" ng-show="frmApp.AppName.$valid"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="!frmApp.AppName.$valid && frmApp.AppName.$dirty"></span>
+                <p ng-show="frmApp.AppName.$invalid && !frmApp.AppName.$pristine" class="help-block">Không được để trống</p>
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : frmApp.AppUrl.$invalid && !frmApp.AppUrl.$pristine, 'has-success': frmApp.AppUrl.$valid}">
+            <label class="control-label col-md-4" for="AppUrl">URL</label>
+            <div class="col-md-8 has-feedback">
+                <input type="text" name="AppUrl" class="form-control" ng-model="tblApp.AppUrl" placeholder="Enter URL" required>
+                <span class=" glyphicon glyphicon-ok form-control-feedback" ng-show="frmApp.AppUrl.$valid"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="!frmApp.AppUrl.$valid && frmApp.AppUrl.$dirty"></span>
+                <p ng-show="frmApp.AppUrl.$invalid && !frmApp.AppUrl.$pristine" class="help-block">Không được để trống</p>
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{ 'has-success': frmApp.$valid }">
+            <label class="control-label col-md-4" for="Note">Note</label>
+            <div class="col-md-8 has-feedback">
+                <textarea name="Note" rows="5" class="form-control" ng-model="tblApp.Note"></textarea>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="submit()" ng-disabled="frmApp.$invalid">Submit</button>
+    <button class="btn btn-default" ng-click="cancel()" data-dismiss="modal">Cancel</button>
+</div>

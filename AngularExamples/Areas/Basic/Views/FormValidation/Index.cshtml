@@ -3,34 +3,37 @@
 }
 
 <h2>Index</h2>
-<div ng-app="validationApp" ng-controller="mainController">
+@section scripts{
+    <script src="~/Scripts/apps/formValidation.js"></script>
+}
+<div ng-app="validationApp" ng-controller="mainCtrl">
     <div class="container">
         <div class="row">
-
-            <div class="col-sm-6">
-                <!-- =================================================================== -->
-                <!-- FORM ============================================================== -->
-                <!-- =================================================================== -->
+            <div class="col-sm-3">
                 <form name="userForm" ng-submit="submitForm()" novalidate>
                     <!-- NAME -->
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" ng-model="user.name" required>
+                    <div class="form-group has-feedback" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine, 'has-success': userForm.name.$valid && userForm.name.$dirty }">
+                        <label class="control-label" for="name">Name</label>
+                        <input type="text" name="name" class="form-control" ng-model="user.name" required autofocus>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="userForm.name.$valid && userForm.name.$dirty"></span>
+                        <span class="glyphicon glyphicon-remove  form-control-feedback" ng-show="!userForm.name.$valid && userForm.name.$dirty"></span>
                         <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
                     </div>
-
                     <!-- USERNAME -->
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+                    <div class="form-group has-feedback" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine, 'has-success': userForm.username.$valid && userForm.username.$dirty }">
+                        <label class="control-label" for="username">Username</label>
+                        <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8" required>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="userForm.username.$valid && userForm.username.$dirty"></span>
+                        <span class="glyphicon glyphicon-remove  form-control-feedback" ng-show="!userForm.username.$valid && userForm.username.$dirty"></span>
                         <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
                         <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
                     </div>
-
                     <!-- EMAIL -->
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                        <label>Email</label>
+                    <div class="form-group has-feedback" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine, 'has-success': userForm.email.$valid && userForm.email.$dirty }">
+                        <label class="control-label" for="email">Email</label>
                         <input type="email" name="email" class="form-control" ng-model="user.email">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="userForm.email.$valid && userForm.email.$dirty"></span>
+                        <span class="glyphicon glyphicon-remove  form-control-feedback" ng-show="!userForm.email.$valid && userForm.email.$dirty"></span>
                         <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
                     </div>
 
@@ -38,10 +41,12 @@
 
                 </form>
             </div>
+            <div class="col-md-3">
+                <div>userForm.$valid: {{userForm.$valid}}</div>
+                <div>userForm.name.$dirty: {{userForm.name.$dirty}}</div>
+                <div>userForm.$dirty: {{userForm.$dirty}}</div>
+            </div>
             <div class="col-sm-6">
-                <!-- =================================================================== -->
-                <!-- VALIDATION TABLES ================================================= -->
-                <!-- =================================================================== -->
                 <div class="row">
                     <div class="col-xs-3">
                         <h3>Form</h3>
@@ -108,7 +113,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
