@@ -18,5 +18,15 @@ namespace AngularExamples.Areas.AngularUI.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult ngDialog()
+        {
+            return View();
+        }
+
+        public ActionResult ngDialogModal()
+        {
+            return PartialView();
+        }
     }
 }

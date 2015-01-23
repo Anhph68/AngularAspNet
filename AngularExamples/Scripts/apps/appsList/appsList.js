@@ -1,21 +1,22 @@
-﻿var app = angular.module("AppsList", ["datatables", 'ui.bootstrap']);
-
+﻿var app = angular.module("AppsList", ["datatables", 'ui.bootstrap', 'toaster']);
 app.controller("AppsCtrl", function ($scope, $compile, $http, DTOptionsBuilder, DTColumnBuilder, $modal) {
     $scope.create = function () {
-        $modal.open({
-            templateUrl: 'Apps/Create',
-            controller: 'createAppCtrl'
+        var modalInstance = $modal.open({
+            templateUrl: 'Create',
+            controller: 'createAppCtrl',
+            scope: $scope
         });
-    };
 
+        modalInstance.result.then();
+    };
     function edit(id) {
         $http.get('/api/tblApps/' + id).success(function (data) {
-            console.log(data);
             $modal.open({
-                templateUrl: 'Apps/Edit',
+                templateUrl: 'Edit',
                 controller: 'editAppCtrl',
+                scope: $scope,
                 resolve: {
-                    data: function() {
+                    data: function () {
                         return data;
                     }
                 }
@@ -23,14 +24,28 @@ app.controller("AppsCtrl", function ($scope, $compile, $http, DTOptionsBuilder, 
         }).error(function (data) {
             $scope.error = "An Error has occured while Saving customer! " + data;
         });
-        //$scope.dtOptions.reloadData();
     }
-
+    function deleteRow(id) {
+        $http.get('/api/tblApps/' + id).success(function (data) {
+            $modal.open({
+                templateUrl: 'Delete',
+                controller: 'delAppCtrl',
+                scope: $scope,
+                resolve: {
+                    data: function () {
+                        return data;
+                    }
+                }
+            });
+        }).error(function (data) {
+            $scope.error = "An Error has occured while Saving customer! " + data;
+        });
+    }
     var vm = this;
     vm.dtOptions = DTOptionsBuilder
         .newOptions()
         .withOption('ajax', {
-            url: 'Basic/GetAppList',
+            url: '../Basic/GetAppList',
             type: 'POST'
         })
         .withDataProp('data')
@@ -50,33 +65,21 @@ app.controller("AppsCtrl", function ($scope, $compile, $http, DTOptionsBuilder, 
         // Recompiling so we can bind Angular directive to the DT
         $compile(angular.element(row).contents())($scope);
     }
-    
-    function deleteRow(id) {
-        var modalInstance = $modal.open({
-            templateUrl: 'Modal',
-            controller: 'ModalCtrl'
-            //resolve: {
-            //    items: function () {
-            //        return $scope.items;
-            //    }
-            //}
-        });
-    }
+
     function actionHtml(data) {
         console.log(data);
         return '<button class="btn btn-sm btn-primary" ng-click="edit(' + data.col0 + ')"><i class="fa fa-edit"></i></button> <button class="btn btn-sm btn-danger" ng-click="delete(' + data.col0 + ')"><i class="fa fa-trash-o"></i></button>';
     }
 });
 
-app.controller('createAppCtrl', function ($scope, $http, $modalInstance) {
+app.controller('createAppCtrl', function ($scope, $http, $modalInstance, toaster) {
     $scope.submit = function () {
         console.log($scope.tblApp);
-        //$modalInstance.close();
         $http.post('/api/tblApps/', this.tblApp).success(function (data) {
-            alert("Added Successfully!!");
-            console.log(data);
+            $modalInstance.close($scope.$$prevSibling.dtOptions.reloadData());
+            toaster.pop('success', "title", "text");
         }).error(function (data) {
-            $scope.error = "An Error has occured while Adding Customer! " + data;
+            toaster.pop('danger', "title", "text");
         });
     }
 
@@ -85,21 +88,47 @@ app.controller('createAppCtrl', function ($scope, $http, $modalInstance) {
     };
 });
 
-app.controller('editAppCtrl', function ($scope, $http, $modalInstance, data) {
-    console.log(data);
-    console.log($scope.$parent.dtOptions);
+app.controller('editAppCtrl', function ($scope, $http, $modalInstance, data, toaster) {
     $scope.tblApp = data;
     $scope.submit = function () {
-        console.log($scope.tblApp);
-        //$modalInstance.close();
         $http.put('/api/tblApps/' + this.tblApp.Id, this.tblApp).success(function (data) {
-            alert("Added Successfully!!");
-            console.log(data);
+            $modalInstance.close($scope.$$prevSibling.dtOptions.reloadData());
+            toaster.pop('success', "title", "text");
         }).error(function (data) {
             $scope.error = "An Error has occured while Adding Customer! " + data;
         });
     }
-
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+app.controller('delAppCtrl', function ($scope, $modalInstance, data, $modal) {
+    $scope.tblApp = data;
+    $scope.submit = function () {
+        $modal.open({
+            templateUrl: 'DelConfirm',
+            controller: 'delConfirmCtrl',
+            scope: $scope,
+            resolve: {
+                id: function () {
+                    return data.Id;
+                }
+            }
+        });
+    }
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+app.controller('delConfirmCtrl', function ($scope, $http, $modalInstance, id, $modalStack, toaster) {
+    $scope.delete = function () {
+        $http.delete('/api/tblApps/' + id).success(function (data) {
+            $modalStack.dismissAll($scope.$$prevSibling.$parent.$$prevSibling.dtOptions.reloadData());
+            toaster.pop('error', "Delete", "An application deleted!");
+        }).error(function (data) {
+            $scope.error = "An Error has occured while Adding Customer! " + data;
+        });
+    };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };

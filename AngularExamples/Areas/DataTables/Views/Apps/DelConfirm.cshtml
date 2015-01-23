@@ -2,7 +2,7 @@
     <h3 class="modal-title">Delete the app of {{tblApp.Id}}</h3>
 </div>
 
-<form name="frmApp" ng-submit="submitForm()" novalidate class="form-horizontal" role="form">
+@*<form name="frmApp" ng-submit="submitForm()" novalidate class="form-horizontal" role="form">
     <div class="modal-body">
         <div class="form-group">
             <label class="control-label col-sm-4" for="Id">AppId</label>
@@ -29,8 +29,8 @@
             </div>
         </div>
     </div>
-</form>
+</form>*@
 <div class="modal-footer">
-    <button class="btn btn-danger" ng-click="submit()" ng-disabled="frmApp.$dirty">Delete</button>
+    <button class="btn btn-danger" ng-click="delete()" ng-disabled="frmApp.$dirty">Confirm</button>
     <button class="btn btn-default" ng-click="cancel()" data-dismiss="modal">Cancel</button>
 </div>

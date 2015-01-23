@@ -224,6 +224,11 @@
   <ItemGroup>
     <Content Include="Content\angular-datatables\datatables.bootstrap.css" />
     <Content Include="Content\angular-datatables\datatables.bootstrap.min.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-default.css" />
+    <Content Include="Content\ngDialog\ngDialog-theme-default.min.css" />
+    <Content Include="Content\ngDialog\ngDialog.css" />
+    <Content Include="Content\ngDialog\ngDialog.min.css" />
+    <Content Include="Content\toaster\toaster.css" />
     <Content Include="Scripts\apps\appsList\appsList.js" />
     <Content Include="Scripts\apps\formValidation.js" />
     <Content Include="Content\apps\multisteps.css" />
@@ -352,6 +357,9 @@
     <Content Include="Areas\DataTables\Views\Apps\Delete.cshtml" />
     <Content Include="Areas\DataTables\Views\Apps\Edit.cshtml" />
     <Content Include="Areas\DataTables\Views\Apps\Index.cshtml" />
+    <Content Include="Areas\DataTables\Views\Apps\DelConfirm.cshtml" />
+    <Content Include="Areas\AngularUI\Views\Modal\ngDialog.cshtml" />
+    <Content Include="Areas\AngularUI\Views\Modal\ngDialogModal.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -373,11 +381,14 @@
     <Content Include="Content\loading-bar\loading-bar.css" />
     <Content Include="Scripts\loading-bar\loading-bar.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ngDialog\ngDialog.js" />
+    <Content Include="Scripts\ngDialog\ngDialog.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toaster\toaster.js" />
     <Content Include="Scripts\ui.router\angular-ui-router.js" />
     <Content Include="Scripts\ui.router\angular-ui-router.min.js" />
     <Content Include="Scripts\_references.js" />

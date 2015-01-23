@@ -1,0 +1,10 @@
+﻿<h3>ngDialog template</h3>
+<div class="ngdialog-message">
+    <p ng-show="theme">Test content for <code>{{theme}}</code></p>
+    <p ng-show="ngDialogData.foo">Data passed through: <code>{{ngDialogData.foo}}</code></p>
+    <p ng-show="dialogModel.message">Scope passed through: <code>{{dialogModel.message}}</code></p>
+</div>
+<div class="text-right">
+    <button type="button" class="btn btn-primary" ng-click="openSecond()">Submit</button>
+    <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+</div>

@@ -12,6 +12,8 @@ namespace AngularExamples
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                 "~/Scripts/angular.js",
+                "~/Scripts/angular-animate.js",
+                "~/Scripts/angular-sanitize.js",
                 "~/Scripts/angular-ui/ui-bootstrap.js",
                 "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"));
 

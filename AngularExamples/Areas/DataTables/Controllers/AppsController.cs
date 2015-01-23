@@ -24,5 +24,10 @@ namespace AngularExamples.Areas.DataTables.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult DelConfirm()
+        {
+            return PartialView();
+        }
     }
 }

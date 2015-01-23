@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ngDialog";
+}
+
+<h2>ngDialog</h2>
+
+@section scripts
+{
+    <link href="~/Content/ngDialog/ngDialog-theme-default.min.css" rel="stylesheet" />
+    <link href="~/Content/ngDialog/ngDialog.min.css" rel="stylesheet" />
+    <script src="~/Scripts/ngDialog/ngDialog.min.js" type="text/javascript"></script>
+    <script>
+        var app = angular.module("myApp", ['ngDialog']);
+        app.config([
+            'ngDialogProvider', function (ngDialogProvider) {
+                ngDialogProvider.setDefaults({
+                    //className: 'ngdialog-theme-default',
+                    plain: false,
+                    showClose: true,
+                    closeByDocument: true,
+                    closeByEscape: true,
+                    appendTo: false
+                });
+            }
+        ]);
+        app.controller('dialogCtrl', function ($scope, $rootScope, ngDialog) {
+            $scope.open = function () {
+                ngDialog.open({
+                    template: 'ngDialogModal',
+                    controller: 'InsideCtrl',
+                    data: { foo: 'some data' }
+                });
+            };
+        });
+        app.controller('InsideCtrl', function ($scope, ngDialog) {
+            $scope.dialogModel = {
+                message: 'message from passed scope'
+            };
+            $scope.openSecond = function () {
+                ngDialog.open({
+                    template: '<h3><a href="" ng-click="closeSecond()">Close all by click here!</a></h3>',
+                    plain: true,
+                    closeByEscape: false,
+                    controller: 'SecondModalCtrl'
+                });
+            };
+        });
+        app.controller('SecondModalCtrl', function ($scope, ngDialog) {
+            $scope.closeSecond = function () {
+                ngDialog.close();
+            };
+        });
+    </script>
+}
+
+<div ng-app="myApp">
+    <div ng-controller="dialogCtrl">
+        <button class="btn btn-success" ng-click="open()">Open via service</button>
+    </div>
+</div>

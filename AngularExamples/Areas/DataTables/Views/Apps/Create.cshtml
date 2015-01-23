@@ -16,7 +16,7 @@
         <div class="form-group" ng-class="{ 'has-error' : frmApp.AppName.$invalid && !frmApp.AppName.$pristine, 'has-success': frmApp.AppName.$valid && frmApp.AppName.$dirty }">
             <label class="control-label col-md-4" for="AppName">Name of Application</label>
             <div class="col-md-8 has-feedback">
-                <input type="text" name="AppName" class="form-control" ng-model="tblApp.AppName" required placeholder="Enter Name of Application">
+                <textarea name="AppName" class="form-control" ng-model="tblApp.AppName" required placeholder="Enter Name of Application" rows="2"></textarea>
                 <span class=" glyphicon glyphicon-ok form-control-feedback" ng-show="frmApp.AppName.$valid && frmApp.AppName.$dirty"></span>
                 <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="!frmApp.AppName.$valid && frmApp.AppName.$dirty"></span>
                 <p ng-show="frmApp.AppName.$invalid && !frmApp.AppName.$pristine" class="help-block">Không được để trống</p>
@@ -25,7 +25,7 @@
         <div class="form-group has-feedback" ng-class="{ 'has-error' : frmApp.AppUrl.$invalid && !frmApp.AppUrl.$pristine, 'has-success': frmApp.AppUrl.$valid && frmApp.AppUrl.$dirty }">
             <label class="control-label col-md-4" for="AppUrl">URL</label>
             <div class="col-md-8 has-feedback">
-                <input type="text" name="AppUrl" class="form-control" ng-model="tblApp.AppUrl" placeholder="Enter URL" required>
+                <textarea name="AppUrl" class="form-control" ng-model="tblApp.AppUrl" placeholder="Enter URL" required></textarea>
                 <span class=" glyphicon glyphicon-ok form-control-feedback" ng-show="frmApp.AppUrl.$valid && frmApp.AppUrl.$dirty"></span>
                 <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="!frmApp.AppUrl.$valid && frmApp.AppUrl.$dirty"></span>
                 <p ng-show="frmApp.AppUrl.$invalid && !frmApp.AppUrl.$pristine" class="help-block">Không được để trống</p>
