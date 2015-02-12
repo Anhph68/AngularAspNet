@@ -9,7 +9,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
 using AngularExamples.Areas.DataTables.Models;
+using System.Web;
 
 namespace AngularExamples.Areas.DataTables.Controllers
 {
@@ -72,13 +74,20 @@ namespace AngularExamples.Areas.DataTables.Controllers
         }
 
         // POST: api/tblApps
+        //[System.Web.Http.Authorize]
         [ResponseType(typeof(tblApp))]
+        //[CustomAuthorize()]
         public async Task<IHttpActionResult> PosttblApp(tblApp tblApp)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+
+
+
+            //var header = Request.Headers.GetValues("RequestVerificationToken").FirstOrDefault();
+            //var token = System.Web.HttpContext.Current.Session["TokenKey"].ToString();
+            //if (header != token)
+            //    return BadRequest();
 
             db.tblApps.Add(tblApp);
 
@@ -89,13 +98,9 @@ namespace AngularExamples.Areas.DataTables.Controllers
             catch (DbUpdateException)
             {
                 if (tblAppExists(tblApp.Id))
-                {
                     return Conflict();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return CreatedAtRoute("DefaultApi", new { id = tblApp.Id }, tblApp);
@@ -105,6 +110,11 @@ namespace AngularExamples.Areas.DataTables.Controllers
         [ResponseType(typeof(tblApp))]
         public async Task<IHttpActionResult> DeletetblApp(int id)
         {
+            //var header = Request.Headers.GetValues("RequestVerificationToken").FirstOrDefault();
+            //var token = System.Web.HttpContext.Current.Session["TokenKey"].ToString();
+            //if (header != token)
+            //    return BadRequest();
+
             tblApp tblApp = await db.tblApps.FindAsync(id);
             if (tblApp == null)
             {

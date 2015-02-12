@@ -2,7 +2,7 @@
     <h3 class="modal-title">Create a new application</h3>
 </div>
 
-<form name="frmApp" ng-submit="submitForm()" novalidate class="form-horizontal" role="form">
+<form name="frmApp" ng-submit="submitForm()" novalidate class="form-horizontal" role="form" id="frmApp">
     <div class="modal-body">
         <div class="form-group has-feedback" ng-class="{ 'has-error' : frmApp.Id.$invalid && !frmApp.Id.$pristine, 'has-success': frmApp.Id.$valid && frmApp.Id.$dirty }">
             <label class="control-label col-sm-4" for="Id">AppId</label>

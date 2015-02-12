@@ -12,6 +12,7 @@ namespace AngularExamples
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                 "~/Scripts/angular.js",
+                "~/Scripts/angular-cookies.js",
                 "~/Scripts/angular-animate.js",
                 "~/Scripts/angular-sanitize.js",
                 "~/Scripts/angular-ui/ui-bootstrap.js",
@@ -30,8 +31,9 @@ namespace AngularExamples
                 "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
-                "~/Scripts/angular-datatables/jquery.dataTables.min.js",
-                "~/Scripts/angular-datatables/angular-datatables.js"));
+                "~/Scripts/angular-datatables/jquery.dataTables.js",
+                "~/Scripts/angular-datatables/angular-datatables.js",
+                "~/Scripts/angular-datatables/angular-datatables.bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/datatable").Include(
                 "~/Content/angular-datatables/datatables.bootstrap.min.css"));

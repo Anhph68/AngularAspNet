@@ -1,16 +1,26 @@
-﻿@{
+﻿@using AngularExamples.Areas.DataTables.Models
+@{
     ViewBag.Title = "Index";
 }
 
+@*@functions{
+    public string GetAntiForgeryToken()
+    {
+        string cookieToken, formToken;
+        AntiForgery.GetTokens(null, out cookieToken, out formToken);
+        return cookieToken + "      " + formToken;
+    }
+}*@
+
 <h2>Index</h2>
-
-
+@*@ViewBag.TokenKey*@
 <div ng-app="AppsList">
+    <input id="antiForgeryToken" data-ng-model="antiForgeryToken" type="hidden" data-ng-init="antiForgeryToken='@Session["TokenKey"]'" />
     <div ng-controller="AppsCtrl as showCase">
         <p>
             <button class="btn btn-success" ng-click="create()">Create New</button>
         </p>
-        <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table table-hover table-bordered table-striped table-condensed"></table>
+        <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table table-hover table-bordered table-striped table-condensed" id="tblApp"></table>
     </div>
     <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'position-class': 'toast-bottom-right'}"></toaster-container>
 </div>

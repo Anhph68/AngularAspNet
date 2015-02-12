@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace AngularExamples.Areas.DataTables.Controllers
@@ -7,6 +8,7 @@ namespace AngularExamples.Areas.DataTables.Controllers
     {
         public ActionResult Index()
         {
+            Session["TokenKey"] = GetAntiForgeryToken();
             return View();
         }
 
@@ -28,6 +30,13 @@ namespace AngularExamples.Areas.DataTables.Controllers
         public ActionResult DelConfirm()
         {
             return PartialView();
+        }
+
+        public string GetAntiForgeryToken()
+        {
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + formToken;
         }
     }
 }
