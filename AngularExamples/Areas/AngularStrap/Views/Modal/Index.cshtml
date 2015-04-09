@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/apps/angularStrap/core.js"></script>
+}
+
+<div ng-controller="modalCtrl">
+    <button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">
+        Click to toggle modal
+        <br>
+        <small>(using an object)</small>
+    </button>
+
+    <!-- You can use a custom html template with the `data-template` attr -->
+    <button type="button" class="btn btn-lg btn-danger" data-animation="am-fade-and-slide-top" data-template="@Url.Action("ModalDemo", "Modal")" bs-modal="modal">
+        Custom Modal
+        <br>
+        <small>(using data-template)</small>
+    </button>
+</div>
+

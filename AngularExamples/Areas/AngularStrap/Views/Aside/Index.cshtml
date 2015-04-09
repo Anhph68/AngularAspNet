@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="asideCtrl">
+    <button type="button" class="btn btn-lg btn-primary" bs-aside="aside">
+        Click to toggle aside
+        <br>
+        <small>(using an object)</small>
+    </button>
+
+    <!-- You can use a custom html template with the `data-template` attr -->
+    <button type="button" class="btn btn-lg btn-danger" data-template="@Url.Action("AsideDemo", "Aside")" data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">
+        Custom aside
+        <br>
+        <small>(using data-template)</small>
+    </button>
+</div>
+
+@section Scripts {
+    <script>
+        var app = angular.module('myApp', ['ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
+
+        app.config(function ($asideProvider) {
+            angular.extend($asideProvider.defaults, {
+                container: 'body',
+                html: true
+            });
+        })
+
+        app.controller('asideCtrl', function ($scope) {
+            $scope.aside = { title: 'Title', content: 'Hello Aside<br />This is a multiline message!' };
+        });
+
+    </script>
+}
+
